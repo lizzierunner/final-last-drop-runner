@@ -34,4 +34,4 @@ Pull requests and suggestions are welcome! Please open an issue for major change
 This project is for educational and charitable purposes. See LICENSE for details.
 
 ## Credits
-Created by Lizzie Johnson. Inspired by Charity: Water.
+Created by Elizabeth(Lizzie) Johnson. Inspired by Charity: Water.

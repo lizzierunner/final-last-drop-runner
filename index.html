@@ -6,6 +6,85 @@
     <meta name="description" content="Last Drop - A Charity: Water Run. Every drop counts. Every mile matters. Run for the last clean water.">
     <title>Last Drop - A Charity: Water Run</title>
     <style>
+        .btn-large {
+            font-size: 1.125rem;
+            padding: 1rem 2.5rem;
+        }
+        .btn-medium {
+            width: auto;
+            padding: 0.625rem 1.25rem;
+        }
+        .overlay-title-failed {
+            color: var(--orange-bright);
+        }
+        .text-cyan-glow {
+            color: var(--cyan-glow);
+        }
+        .text-cyan-bright {
+            color: var(--cyan-bright);
+        }
+        .text-orange-bright {
+            color: var(--orange-bright);
+        }
+        .mt-1 {
+            margin-top: 1rem;
+        }
+        .mt-2 {
+            margin-top: 2rem;
+        }
+        .mb-1 {
+            margin-bottom: 1rem;
+        }
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+        .flex-center {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .score-large {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--cyan-glow);
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.6);
+            margin-bottom: 0.5rem;
+        }
+        .main-layout {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .flex-1 {
+            flex: 1;
+        }
+        .runner-img-container {
+            text-align: center;
+            margin: 32px 0;
+        }
+        .runner-img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+        }
+        .difficulty-selector-container {
+            margin: 2rem 0;
+        }
+        .difficulty-title {
+            color: var(--text-orange);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        .difficulty-name.recruit {
+            color: var(--green-bright);
+        }
+        .difficulty-name.runner {
+            color: var(--cyan-glow);
+        }
+        .difficulty-name.wasteland {
+            color: var(--red-bright);
+        }
         /* ========== Theme Colors (Teal & Orange Wasteland) ========== */
         :root {
             --cyan-glow: #00d9ff;
@@ -402,6 +481,9 @@
             overflow: hidden;
             min-height: 300px;
             aspect-ratio: 16 / 9;
+            width: 100vw;
+            max-width: 100vw;
+            overflow-x: hidden;
         }
 
         @supports not (aspect-ratio: 16 / 9) {
@@ -460,15 +542,17 @@
             }
         }
 
-        .overlay-content h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            color: var(--cyan-glow);
-            text-shadow: 
-                0 0 30px rgba(0, 217, 255, 0.8),
-                0 0 60px rgba(0, 217, 255, 0.4);
+        .overlay-content {
+            text-align: center;
+            padding: 2rem;
+            max-width: 100vw;
+            width: 100vw;
+            animation: slideIn 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin: auto 0;
+            min-height: min-content;
+            left: 0;
+            right: 0;
+        }
             letter-spacing: 0.08em;
             text-transform: uppercase;
         }
@@ -1485,8 +1569,8 @@
     <audio id="tronTheme" src="assets/tron-theme.mpg" preload="auto" loop></audio>
     <div class="bg-animated"></div>
     
-    <div style="display: flex; flex-direction: column; min-height: 100vh;">
-    <div class="game-wrapper" style="flex: 1;">
+    <div class="main-layout">
+    <div class="game-wrapper flex-1">
         <!-- Header -->
         <header class="header">
             <div class="header-content">
@@ -1495,8 +1579,8 @@
                         <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                                 <linearGradient id="dropGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#00d9ff;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#0097a7;stop-opacity:1" />
+                                    <stop offset="0%" class="svg-stop-cyan" />
+                                    <stop offset="100%" class="svg-stop-blue" />
                                 </linearGradient>
                             </defs>
                             <path d="M 50 10 Q 70 40 70 70 Q 70 95 50 110 Q 30 95 30 70 Q 30 40 50 10 Z" 
@@ -1516,13 +1600,13 @@
                         <div class="tagline">Every Drop Counts. Every Mile Matters.</div>
                     </div>
                 </div>
-                    <div style="text-align:center; margin: 32px 0;">
-                        <img src="assets/runner.png" alt="Runner" style="max-width: 300px; width: 100%; height: auto;">
+                    <div class="runner-img-container">
+                        <img src="assets/runner.png" alt="Runner" class="runner-img">
                     </div>
                 <div class="controls">
                     <button class="btn btn-primary" id="howToPlayBtn" title="How to Play">
                         <span>❓</span>
-                        <span style="display: none;" class="btn-text">How to Play</span>
+                        <span class="btn-text visually-hidden">How to Play</span>
                     </button>
                     <button class="btn btn-icon" id="soundToggle" title="Toggle sound effects">
                         <span id="soundIcon">🔊</span>
@@ -1554,13 +1638,13 @@
                         </p>
 
                         <!-- Difficulty Selector -->
-                        <div style="margin: 2rem 0;">
-                            <h3 style="color: var(--text-orange); margin-bottom: 1rem; font-size: 1.25rem;">⚙️ SELECT DIFFICULTY</h3>
+                        <div class="difficulty-selector-container">
+                            <h3 class="difficulty-title">⚙️ SELECT DIFFICULTY</h3>
                             <div class="difficulty-selector">
                                 <div class="difficulty-btn easy" data-difficulty="easy">
                                     <div class="difficulty-badge">Recommended</div>
                                     <div class="difficulty-icon">🌱</div>
-                                    <div class="difficulty-name" style="color: var(--green-bright);">RECRUIT</div>
+                                    <div class="difficulty-name recruit">RECRUIT</div>
                                     <div class="difficulty-desc">Perfect for beginners</div>
                                     <div class="difficulty-stats">
                                         <div>• Speed: 80% Normal</div>
@@ -1573,7 +1657,7 @@
                                 <div class="difficulty-btn normal selected" data-difficulty="normal">
                                     <div class="difficulty-badge">Balanced</div>
                                     <div class="difficulty-icon">⚡</div>
-                                    <div class="difficulty-name" style="color: var(--cyan-glow);">RUNNER</div>
+                                    <div class="difficulty-name runner">RUNNER</div>
                                     <div class="difficulty-desc">Standard challenge</div>
                                     <div class="difficulty-stats">
                                         <div>• Speed: 100% Normal</div>
@@ -1586,7 +1670,7 @@
                                 <div class="difficulty-btn hard" data-difficulty="hard">
                                     <div class="difficulty-badge">Expert</div>
                                     <div class="difficulty-icon">🔥</div>
-                                    <div class="difficulty-name" style="color: var(--red-bright);">WASTELAND</div>
+                                    <div class="difficulty-name wasteland">WASTELAND</div>
                                     <div class="difficulty-desc">For true survivors</div>
                                     <div class="difficulty-stats">
                                         <div>• Speed: 130% Normal</div>
@@ -1616,7 +1700,7 @@
                             </div>
                         </div>
 
-                        <button class="btn btn-primary" id="startButton" style="font-size: 1.125rem; padding: 1rem 2.5rem;">
+                        <button class="btn btn-primary btn-large" id="startButton">
                             ▶ BEGIN MISSION
                         </button>
 
@@ -1646,20 +1730,20 @@
                 <!-- Game Over Overlay -->
                 <div class="overlay" id="gameOverOverlay">
                     <div class="overlay-content">
-                        <h2 style="color: var(--orange-bright);">MISSION FAILED</h2>
+                        <h2 class="overlay-title-failed">MISSION FAILED</h2>
                         <p class="mission-text">🔻 Water supply depleted</p>
                         
                         <div class="current-difficulty" id="gameOverDifficulty">
                             Difficulty: RUNNER
                         </div>
 
-                        <div style="margin: 2rem 0;">
-                            <div style="font-size: 3rem; font-weight: 900; color: var(--cyan-glow); text-shadow: 0 0 20px rgba(0, 217, 255, 0.6); margin-bottom: 0.5rem;" id="finalScore">0</div>
-                            <p style="color: var(--cyan-bright);">
-                                Best Run: <strong id="finalHighScore" style="color: var(--cyan-glow);">0</strong> drops
+                        <div class="mt-2 mb-2">
+                            <div class="score-large" id="finalScore">0</div>
+                            <p class="text-cyan-bright">
+                                Best Run: <strong id="finalHighScore" class="text-cyan-glow">0</strong> drops
                             </p>
-                            <p style="color: var(--cyan-bright); margin-top: 0.5rem;">
-                                Water Delivered: <strong id="finalDrops" style="color: var(--cyan-glow);">0</strong> 💧
+                            <p class="text-cyan-bright mt-1">
+                                Water Delivered: <strong id="finalDrops" class="text-cyan-glow">0</strong> 💧
                             </p>
                         </div>
                         
@@ -1669,11 +1753,11 @@
                             <div class="impact-desc">Clean water provided</div>
                         </div>
 
-                        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                        <div class="flex-center">
                             <button class="btn btn-primary" id="playAgainButton">
                                 🔄 RETRY MISSION
                             </button>
-                            <button class="btn btn-icon" id="backToMenuButton" style="width: auto; padding: 0.625rem 1.25rem;">
+                            <button class="btn btn-icon btn-medium" id="backToMenuButton">
                                 🏠 BASE
                             </button>
                         </div>
@@ -1687,7 +1771,7 @@
                         <div class="current-difficulty" id="pauseDifficulty">
                             Difficulty: RUNNER
                         </div>
-                        <p style="color: var(--cyan-bright); margin: 2rem 0;">Press ESC or Resume to continue</p>
+                        <p class="text-cyan-bright mt-2 mb-2">Press ESC or Resume to continue</p>
                         <button class="btn btn-primary" id="resumeButton">
                             ▶ RESUME MISSION
                         </button>
@@ -1696,38 +1780,38 @@
 
                 <!-- How to Play Overlay -->
                 <div class="overlay" id="howToPlayOverlay">
-                    <div class="overlay-content" style="max-width: 800px; max-height: 85vh; overflow-y: auto; position: relative;">
-                        <button class="btn btn-icon" id="closeHowToPlayX" style="position: absolute; top: 1rem; right: 1rem; width: 40px; height: 40px; z-index: 10;" title="Close">
+                    <div class="overlay-content overlay-content-custom">
+                        <button class="btn btn-icon btn-close-howto" id="closeHowToPlayX" title="Close">
                             ✕
                         </button>
                         <h2>📖 HOW TO PLAY</h2>
                         <p class="mission-text">Master the Wasteland Circuit</p>
-                        <p style="color: var(--cyan-medium); font-size: 0.8125rem; margin-top: 0.5rem;">
-                            Press <kbd style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">ESC</kbd> or click <strong style="color: var(--cyan-bright);">✕</strong> to close
+                        <p class="hint-cyan-medium">
+                            Press <kbd class="kbd-hint">ESC</kbd> or click <strong class="strong-cyan-bright">✕</strong> to close
                         </p>
 
-                        <div style="text-align: left; margin: 2rem 0;">
+                        <div class="hint-block">
                             <!-- Basic Controls -->
-                            <div style="background: rgba(0, 151, 167, 0.2); border: 2px solid var(--cyan-dark); border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 1.5rem;">
-                                <h3 style="color: var(--cyan-glow); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <div class="hint-section">
+                                <h3 class="hint-title-cyan">
                                     🎮 <span>Basic Controls</span>
                                 </h3>
-                                <div style="display: grid; gap: 0.75rem;">
-                                    <div style="display: flex; align-items: center; gap: 1rem;">
-                                        <kbd style="background: rgba(0, 217, 255, 0.2); padding: 0.5rem 1rem; border-radius: 0.5rem; border: 2px solid var(--cyan-dark); min-width: 100px; text-align: center;">SPACE / ↑</kbd>
-                                        <span style="color: var(--cyan-bright);">Jump over obstacles</span>
+                                <div class="hint-grid">
+                                    <div class="hint-flex">
+                                        <kbd class="kbd-action">SPACE / ↑</kbd>
+                                        <span class="span-cyan-bright">Jump over obstacles</span>
                                     </div>
-                                    <div style="display: flex; align-items: center; gap: 1rem;">
-                                        <kbd style="background: rgba(0, 217, 255, 0.2); padding: 0.5rem 1rem; border-radius: 0.5rem; border: 2px solid var(--cyan-dark); min-width: 100px; text-align: center;">CLICK / TAP</kbd>
-                                        <span style="color: var(--cyan-bright);">Interact with objects</span>
+                                    <div class="hint-flex">
+                                        <kbd class="kbd-action">CLICK / TAP</kbd>
+                                        <span class="span-cyan-bright">Interact with objects</span>
                                     </div>
-                                    <div style="display: flex; align-items: center; gap: 1rem;">
-                                        <kbd style="background: rgba(0, 217, 255, 0.2); padding: 0.5rem 1rem; border-radius: 0.5rem; border: 2px solid var(--cyan-dark); min-width: 100px; text-align: center;">ESC</kbd>
-                                        <span style="color: var(--cyan-bright);">Pause game</span>
+                                    <div class="hint-flex">
+                                        <kbd class="kbd-action">ESC</kbd>
+                                        <span class="span-cyan-bright">Pause game</span>
                                     </div>
-                                    <div style="display: flex; align-items: center; gap: 1rem;">
-                                        <kbd style="background: rgba(0, 217, 255, 0.2); padding: 0.5rem 1rem; border-radius: 0.5rem; border: 2px solid var(--cyan-dark); min-width: 100px; text-align: center;">HOVER</kbd>
-                                        <span style="color: var(--cyan-bright);">See object info (desktop)</span>
+                                    <div class="hint-flex">
+                                        <kbd class="kbd-action">HOVER</kbd>
+                                        <span class="span-cyan-bright">See object info (desktop)</span>
                                     </div>
                                 </div>
                             </div>

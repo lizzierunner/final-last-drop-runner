@@ -1,49 +1,37 @@
-# Last Drop Runner
 
-A game prototype inspired by charity: water’s mission to provide clean water for all.
+# Last Drop - A Charity: Water Run
 
-## Game Overview
-- **Mission:** Complete the Wasteland Circuit by maintaining hydration and earning XP.
-- **Gameplay:**
-  - Click Start to begin your run.
-  - Track your hydration and XP as you progress.
-  - Dodge raiders by clicking the "Dodge Raider!" button when they appear, or lose hydration as a penalty.
-  - Win by reaching 100% progress. Celebrate with confetti and a spectacular animated overlay!
-  - Use the Reset button to restart the game at any time.
-  - Try the Konami Code for a secret hydration boost!
+## Overview
+Last Drop is a browser-based runner game created to raise awareness for clean water initiatives, inspired by Charity: Water. Players run to collect water drops, avoid obstacles, and learn about the impact of clean water access.
 
 ## Features
-- Interactive elements that update game state
-- Score tracking and display
-- Timer-based progress
-- Responsive layout for desktop and mobile
-- Charity: water brand colors, logo, and motifs
-- Obstacles (raiders) and penalties
-- Win celebration with confetti and animation
-- Reset button for game control
+- Playable runner game with animated backgrounds
+- Collect water drops and avoid hazards
+- Difficulty selection and scoring system
+- Themed visuals inspired by Charity: Water
+- Responsive design for desktop and mobile
 
 ## How to Play
-1. Click **Start** to begin.
-2. Watch for raiders and click **Dodge Raider!** quickly to avoid penalties.
-3. Track your hydration and XP in the HUD.
-4. Reach 100% progress to win!
-5. Click **Reset** to restart the game.
+1. Click "Start" to begin the run.
+2. Use your keyboard or on-screen controls to move the runner and collect water drops.
+3. Avoid obstacles to keep running and maximize your score.
+4. Try different difficulty levels for a challenge.
 
-## LevelUp Features
-- Raider obstacle (penalty)
-- Reset button
-- Spectacular win celebration
+## Assets
+- `assets/runner.png`: Main runner character
+- `assets/charity_water_logo.png`: Charity: Water logo
+- `assets/favicon.svg`: Site favicon
 
-## Setup & Deployment
-1. Clone the repo: `git clone https://github.com/lizzierunner/last-drop-runner.git`
-2. Open `index.html` in your browser to play locally.
-3. Deploy with GitHub Pages for a live version.
+## Setup & Usage
+1. Clone or download the repository.
+2. Open `index.html` in your browser.
+3. No installation required; all assets are included locally.
+
+## Contributing
+Pull requests and suggestions are welcome! Please open an issue for major changes.
+
+## License
+This project is for educational and charitable purposes. See LICENSE for details.
 
 ## Credits
-- Game by Elizabeth Johnson
-- Inspired by charity: water
-- Confetti animation by [canvas-confetti](https://www.npmjs.com/package/canvas-confetti)
-
----
-
-*Every Drop Counts. Every Mile Matters.*
+Created by Lizzie Johnson. Inspired by Charity: Water.

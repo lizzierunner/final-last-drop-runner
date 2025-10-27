@@ -1478,6 +1478,11 @@
     </style>
 </head>
 <body>
+    <audio id="errorSound" src="assets/error.wav" preload="auto"></audio>
+    <!-- Sound Effects -->
+    <audio id="powerupSound" src="assets/powerup.wav" preload="auto"></audio>
+    <audio id="missionCompleteSound" src="assets/mission-complete.wav" preload="auto"></audio>
+    <audio id="tronTheme" src="assets/tron-theme.mpg" preload="auto" loop></audio>
     <div class="bg-animated"></div>
     
     <div style="display: flex; flex-direction: column; min-height: 100vh;">
@@ -2029,6 +2034,15 @@
                 color: '#ef4444'
             }
         };
+
+        // ==================== Play Sound Effects ====================
+        function playSound(id) {
+            const audio = document.getElementById(id);
+            if (audio) {
+                audio.currentTime = 0;
+                audio.play();
+            }
+        }
 
         // ==================== Tron Music Player ====================
         class TronMusicPlayer {
@@ -2753,7 +2767,7 @@
                     this.explode(powerup.x + powerup.w / 2, powerup.y + powerup.h / 2, 35, '#00d9ff');
                     this.showFloatingText(powerup.x + powerup.w / 2, powerup.y, '🧲 MAGNET!', '#00d9ff');
                 }
-                this.sound('powerup');
+                playSound('powerupSound');
                 this.powerups.splice(index, 1);
             }
 
@@ -3199,8 +3213,9 @@
                             this.explode(this.player.x + this.player.w / 2, this.player.y + this.player.h / 2, 25, '#00d9ff');
                             this.sound('destroy');
                         } else {
-                            this.sound('hit');
+                            playSound('errorSound');
                             this.manager.endGame(Math.floor(this.manager.score), this.dropsCollected, this.distance, this.jumps);
+                            playSound('missionCompleteSound');
                             return;
                         }
                     }
@@ -3959,10 +3974,11 @@
         }
 
         // ==================== Initialize ====================
-        const manager = new GameManager();
-        const canvas = document.getElementById('gameCanvas');
-        const engine = new GameEngine(canvas, manager);
-        const ui = new UIController(manager);
+    const manager = new GameManager();
+    const canvas = document.getElementById('gameCanvas');
+    const engine = new GameEngine(canvas, manager);
+    const ui = new UIController(manager);
+    document.getElementById('tronTheme').play();
 
         // Update loop
         setInterval(() => {

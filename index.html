@@ -2094,7 +2094,6 @@
         </style>
 </head>
 <body>
-    <audio id="errorSound" src="assets/error.wav" preload="auto"></audio>
     <audio id="hitSound" src="assets/hit.wav" preload="auto"></audio>
     <!-- Sound Effects -->
     <audio id="powerupSound" src="assets/powerup.wav" preload="auto"></audio>
@@ -3845,8 +3844,7 @@
                         playSound('hitSound');
                         return;
                     } else if (type === 'miss') {
-                        // Play error sound from audio file for missed drops
-                        playSound('errorSound');
+                        // Sound effect removed for miss
                         return;
                     } else if (type === 'combo') {
                         // Special combo sound
@@ -4018,7 +4016,6 @@
                     return;
                 }
                 if (elapsed >= this.timeLimit) {
-                    playSound('errorSound');
                     this.manager.endGame(Math.floor(this.manager.score), this.dropsCollected, this.distance, this.jumps);
                     return;
                 }
@@ -4117,7 +4114,6 @@
                             this.explode(this.player.x + this.player.w / 2, this.player.y + this.player.h / 2, 25, '#00d9ff');
                             this.sound('destroy');
                         } else {
-                            playSound('errorSound');
                             this.manager.endGame(Math.floor(this.manager.score), this.dropsCollected, this.distance, this.jumps);
                             playSound('missionCompleteSound');
                             return;

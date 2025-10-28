@@ -2098,8 +2098,8 @@
     <!-- Sound Effects -->
     <audio id="powerupSound" src="assets/powerup.wav" preload="auto"></audio>
     <audio id="missionCompleteSound" src="assets/mission-complete.mp3" preload="auto"></audio>
-    <!-- Background Music -->
-    <audio id="backgroundMusic" src="assets/tron-world.wav" preload="auto" loop></audio>
+    <!-- Background Music - Autoplay with muted attribute to bypass browser policies -->
+    <audio id="backgroundMusic" src="assets/tron-world.wav" preload="auto" loop autoplay muted></audio>
     <!-- Mission Complete Overlay -->
     <div id="missionCompleteOverlay" class="mission-complete-overlay" style="display:none;">
         <div class="mission-complete-bg-particles"></div>
@@ -2895,6 +2895,8 @@
         function playSound(id) {
             const audio = document.getElementById(id);
             if (audio) {
+                // Unmute on any sound play attempt
+                audio.muted = false;
                 audio.currentTime = 0;
                 audio.play().catch(e => {
                     // User interaction required or audio blocked
@@ -2902,6 +2904,22 @@
                 });
             }
         }
+
+        // Global audio enabler - unmute all audio on first interaction
+        let audioEnabled = false;
+        const enableAudio = () => {
+            if (!audioEnabled) {
+                const bgMusic = document.getElementById('backgroundMusic');
+                if (bgMusic) {
+                    bgMusic.muted = false;
+                    bgMusic.play().catch(e => console.debug('Music starting:', e));
+                }
+                audioEnabled = true;
+            }
+        };
+        document.addEventListener('click', enableAudio);
+        document.addEventListener('keydown', enableAudio);
+        document.addEventListener('touchstart', enableAudio);
 
         // ==================== Tron Music Player ====================
         class TronMusicPlayer {
@@ -3195,6 +3213,7 @@
                 try {
                     const bgMusic = document.getElementById('backgroundMusic');
                     if (bgMusic) {
+                        bgMusic.muted = false; // Ensure not muted
                         bgMusic.volume = 0.3; // Set volume to 30%
                         bgMusic.currentTime = 0;
                         const playPromise = bgMusic.play();
@@ -5079,20 +5098,24 @@ document.addEventListener('DOMContentLoaded', function() {
     engine = new GameEngine(canvas, manager);
     ui = new UIController(manager);
     
-    // Start menu background music
-    manager.startBackgroundMusic();
-    // Removed reference to missing tronTheme audio element
+    // Start menu background music - unmute to allow autoplay
+    const bgMusic = document.getElementById('backgroundMusic');
+    if (bgMusic) {
+        bgMusic.muted = false;
+        bgMusic.volume = 0.3;
+        manager.startBackgroundMusic();
+    }
 
-    // Auto-play music on first user interaction (browser policy)
-    const startMusicOnInteraction = () => {
-        const bgMusic = document.getElementById('backgroundMusic');
+    // Ensure music plays on first user interaction (for browsers that block autoplay)
+    const unmuteAndPlay = () => {
         if (bgMusic && bgMusic.paused) {
-            bgMusic.play().catch(e => console.debug('Music will play when allowed'));
+            bgMusic.muted = false;
+            bgMusic.play().catch(e => console.debug('Music autoplay:', e));
         }
     };
-    document.addEventListener('click', startMusicOnInteraction, { once: true });
-    document.addEventListener('keydown', startMusicOnInteraction, { once: true });
-    document.addEventListener('touchstart', startMusicOnInteraction, { once: true });
+    document.addEventListener('click', unmuteAndPlay, { once: true });
+    document.addEventListener('keydown', unmuteAndPlay, { once: true });
+    document.addEventListener('touchstart', unmuteAndPlay, { once: true });
 
     // Update loop
     setInterval(() => {

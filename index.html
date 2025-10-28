@@ -3193,13 +3193,18 @@
             }
 
             startBackgroundMusic() {
-                if (!this.musicEnabled) return;
-                
                 try {
                     const bgMusic = document.getElementById('backgroundMusic');
                     if (bgMusic) {
+                        bgMusic.volume = 0.3; // Set volume to 30%
                         bgMusic.currentTime = 0;
-                        bgMusic.play().catch(e => console.log('Audio play failed:', e));
+                        const playPromise = bgMusic.play();
+                        if (playPromise !== undefined) {
+                            playPromise.catch(e => {
+                                // Autoplay was prevented, will play on first user interaction
+                                console.debug('Music will start on user interaction');
+                            });
+                        }
                     }
                 } catch (e) {
                     console.error('Music error:', e);
@@ -5081,6 +5086,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Start menu background music
     manager.startBackgroundMusic();
     // Removed reference to missing tronTheme audio element
+
+    // Auto-play music on first user interaction (browser policy)
+    const startMusicOnInteraction = () => {
+        const bgMusic = document.getElementById('backgroundMusic');
+        if (bgMusic && bgMusic.paused) {
+            bgMusic.play().catch(e => console.debug('Music will play when allowed'));
+        }
+    };
+    document.addEventListener('click', startMusicOnInteraction, { once: true });
+    document.addEventListener('keydown', startMusicOnInteraction, { once: true });
+    document.addEventListener('touchstart', startMusicOnInteraction, { once: true });
 
     // Update loop
     setInterval(() => {

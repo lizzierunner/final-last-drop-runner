@@ -1,11 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Montserrat font for charity: water brand -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="description" content="Last Drop - A Charity: Water Run. Every drop counts. Every mile matters. Run for the last clean water.">
     <title>Last Drop - A Charity: Water Run</title>
     <style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Work+Sans:wght@300;400;500;600;700&display=swap');
+/* Mission Objectives Controls & Pro Tip */
+.mission-controls {
+    margin-top: 1rem;
+}
+.mission-protip {
+    margin-top: 1rem;
+    color: var(--orange-bright);
+}
+/* Pro Tips Card Refactor */
+.card-pro-tips {
+    /* Inherits card-orange-light styles */
+}
+.card-grid-cyan.card-pro-tips-grid {
+    display: grid;
+    gap: 0.5rem;
+    color: var(--cyan-bright);
+}
+.card-pro-tips-goal {
+    margin-top: 0.75rem;
+    color: var(--orange-bright);
+}
+/* Difficulty Modes Card Refactor */
+.card-difficulty-modes {
+    /* Inherits card-cyan styles */
+}
+.card-grid-cyan.card-difficulty-grid {
+    display: grid;
+    gap: 0.75rem;
+    color: var(--cyan-bright);
+}
+.card-strong-green {
+    color: #22c55e;
+}
+.card-strong-red {
+    color: #ef4444;
+}
+/* Scoring System Card Refactor */
+.card-orange-light {
+    background: rgba(255, 111, 0, 0.1);
+    border: 2px solid rgba(255, 111, 0, 0.3);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.card-title-orange {
+    color: var(--orange-bright);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.card-grid-cyan.card-scoring-grid {
+    display: grid;
+    gap: 0.5rem;
+    color: var(--cyan-bright);
+}
+.card-combo-box.card-combo-box-orange {
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 0.5rem;
+}
+.card-strong-orange {
+    color: var(--orange-bright);
+}
+/* Power-Ups Card Refactor */
+.card-cyan {
+    background: rgba(0, 151, 167, 0.2);
+    border: 2px solid var(--cyan-dark);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.card-title-cyan {
+    color: var(--cyan-glow);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.card-grid-cyan.card-powerups-grid {
+    display: grid;
+    gap: 0.75rem;
+    color: var(--cyan-bright);
+}
+.card-powerup-flex {
+    display: flex;
+    align-items: start;
+    gap: 0.75rem;
+}
+.card-powerup-icon {
+    font-size: 1.5rem;
+}
+.card-strong-cyan {
+    color: var(--cyan-glow);
+}
+.card-small-cyan {
+    color: var(--cyan-medium);
+    font-size: 0.95em;
+}
+        /* Click Mechanics Card Styles */
+        .card-orange {
+            background: rgba(255, 111, 0, 0.1);
+            border: 2px solid rgba(255, 111, 0, 0.3);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .card-title-orange {
+            color: var(--orange-bright);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .card-grid-cyan {
+            display: grid;
+            gap: 0.75rem;
+            color: var(--cyan-bright);
+        }
+        .card-strong-cyan {
+            color: var(--cyan-glow);
+        }
+        .card-strong-orange {
+            color: var(--orange-bright);
+        }
+        .card-combo-box {
+            margin-top: 0.5rem;
+            padding: 0.75rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 0.5rem;
+        }
+        /* Sidebar and Mission Data Card Styles */
+        .mission-data-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .mission-data-logo {
+            height: 1.5em;
+            vertical-align: middle;
+        }
+        .sidebar-difficulty {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .progress-container-scroll {
+            max-height: 30vh;
+            overflow-y: auto;
+        }
         .btn-large {
             font-size: 1.125rem;
             padding: 1rem 2.5rem;
@@ -115,10 +270,14 @@
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Work+Sans:wght@300;400;500;600;700&display=swap');
 
         body {
-            font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            font-family: 'Montserrat', 'Arial', sans-serif;
             background: var(--bg-gradient);
             color: var(--text-cyan);
             overflow: hidden;
+        h1, h2, h3, h4, h5, h6, .footer-text h3 {
+            font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+            font-weight: 700;
+        }
             position: relative;
             /* Fix for mobile viewport height */
             min-height: 100vh;
@@ -160,6 +319,9 @@
             max-width: 100vw;
             display: flex;
             flex-direction: column;
+            flex: 1 1 auto;
+            overflow-y: auto;
+            min-height: 0;
             padding: 0.75rem;
             padding-left: max(0.75rem, env(safe-area-inset-left));
             padding-right: max(0.75rem, env(safe-area-inset-right));
@@ -864,6 +1026,8 @@
             border-radius: 0.75rem;
             border: 2px solid var(--cyan-dark);
             margin-top: 1.5rem;
+            max-height: 50vh;
+            overflow-y: auto;
         }
 
         .mission-brief h3 {
@@ -938,14 +1102,16 @@
 
         /* ========== Charity Footer ========== */
         .charity-footer {
-            background: linear-gradient(135deg, rgba(0, 151, 167, 0.95), rgba(0, 184, 212, 0.9));
-            padding: 1.5rem 2rem;
-            border-top: 3px solid var(--cyan-glow);
-            box-shadow: 
-                0 -10px 40px rgba(0, 217, 255, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(135deg, #00b8d4 0%, #0097a7 100%);
+            padding: 0.35rem 0.75rem;
+            border-top: 2px solid #00d9ff;
+            box-shadow: 0 -4px 12px 0 rgba(0, 217, 255, 0.2), 0 0 0 2px #00d9ff33, inset 0 1px 0 rgba(255,255,255,0.07);
+            position: sticky;
+            bottom: 0;
+            overflow: visible;
+            font-size: 0.85rem;
+            color: #fff;
+            z-index: 10000;
         }
 
         .charity-footer::before {
@@ -1033,16 +1199,17 @@
 
         .footer-actions {
             display: flex;
-            gap: 1rem;
+            gap: 2rem;
             flex-wrap: wrap;
+            margin-top: 2rem;
         }
 
         .footer-btn {
-            padding: 0.875rem 1.75rem;
-            border: none;
-            border-radius: 0.5rem;
-            font-weight: 700;
-            font-size: 1rem;
+            padding: 1.25rem 2.5rem;
+            border: 3px solid #fff;
+            border-radius: 1rem;
+            font-weight: 900;
+            font-size: 1.25rem;
             cursor: pointer;
             transition: all 300ms ease;
             display: flex;
@@ -1054,7 +1221,7 @@
             letter-spacing: 0.05em;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 18px rgba(0,217,255,0.25);
         }
 
         .footer-btn::before {
@@ -1560,17 +1727,592 @@
             }
         }
     </style>
+        <style>
+        /* Compact footer for charity: water links */
+        .charitywater-links-footer {
+            width: 100vw;
+            background: #fff;
+            color: #222;
+            font-family: 'Montserrat', 'Arial', sans-serif;
+            font-size: 1rem;
+            border-top: 1px solid #e0e0e0;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            z-index: 1001;
+            padding: 0.3rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+        }
+        .charitywater-links-content {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+        .charitywater-link-main, .charitywater-link-donate {
+            color: #0097a7;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            transition: color 0.2s;
+        }
+        .charitywater-link-main:hover, .charitywater-link-donate:hover {
+            color: #00d9ff;
+            text-decoration: underline;
+        }
+        .charitywater-footer-sep {
+            color: #bbb;
+            font-size: 1.1em;
+            user-select: none;
+        }
+        @media (max-width: 600px) {
+            .charitywater-links-footer {
+                font-size: 0.9rem;
+                padding: 0.18rem 0;
+            }
+            .charitywater-links-content {
+                gap: 0.4rem;
+            }
+        }
+        </style>
+        <style>
+        /* Footer Button under Mission Objectives */
+        .charitywater-footer-btn-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin: 1.2rem 0 0.5rem 0;
+        }
+        .charitywater-footer-btn {
+            background: linear-gradient(90deg, #00d9ff 60%, #0097a7 100%);
+            color: #fff;
+            border-radius: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            padding: 0.25rem 1.1rem 0.25rem 0.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            transition: box-shadow 0.2s, background 0.2s;
+        }
+        .charitywater-footer-btn:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+            background: linear-gradient(90deg, #0097a7 60%, #00d9ff 100%);
+        }
+        .charitywater-footer-icon {
+            font-size: 1.2em;
+            margin-right: 0.1em;
+        }
+        .charitywater-footer-text {
+            font-size: 0.95em;
+            letter-spacing: 0.01em;
+        }
+        @media (max-width: 600px) {
+            .charitywater-footer-btn {
+                font-size: 0.85rem;
+                padding: 0.18rem 0.7rem 0.18rem 0.5rem;
+            }
+            .charitywater-footer-icon {
+                font-size: 1em;
+            }
+            .charitywater-footer-text {
+                font-size: 0.85em;
+            }
+        }
+        </style>
+        <style>
+        /* Floating Charity: Water Button */
+        .charitywater-float-btn {
+            position: fixed;
+            right: 1.2vw;
+            bottom: 1.2vw;
+            z-index: 1000;
+            background: linear-gradient(90deg, #00d9ff 60%, #0097a7 100%);
+            color: #fff;
+            border-radius: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            padding: 0.25rem 0.9rem 0.25rem 0.6rem;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            transition: box-shadow 0.2s, background 0.2s;
+        }
+        .charitywater-float-btn:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+            background: linear-gradient(90deg, #0097a7 60%, #00d9ff 100%);
+        }
+        .charitywater-float-icon {
+            font-size: 1.2em;
+            margin-right: 0.1em;
+        }
+        .charitywater-float-text {
+            font-size: 0.95em;
+            letter-spacing: 0.01em;
+        }
+        @media (max-width: 600px) {
+            .charitywater-float-btn {
+                font-size: 0.85rem;
+                padding: 0.18rem 0.6rem 0.18rem 0.4rem;
+                right: 2vw;
+                bottom: 2vw;
+            }
+            .charitywater-float-icon {
+                font-size: 1em;
+            }
+            .charitywater-float-text {
+                font-size: 0.85em;
+            }
+        }
+        </style>
+        <style>
+        /* Minimum Size Charity: Water Footer */
+        .charity-footer {
+            padding: 0;
+            font-size: 0.4rem;
+        }
+        .charity-footer .footer-content {
+            gap: 0;
+            padding: 0;
+        }
+        .charity-footer .footer-brand h3 {
+            font-size: 0.45rem;
+            margin-bottom: 0;
+        }
+        .charity-footer .footer-brand p {
+            font-size: 0.35rem;
+            margin-bottom: 0;
+        }
+        .charity-footer .footer-mission {
+            font-size: 0.35rem;
+            margin-bottom: 0;
+        }
+        .charity-footer .footer-actions {
+            gap: 0;
+        }
+        .charity-footer .footer-btn {
+            font-size: 0.4rem;
+            padding: 0.02rem 0.08rem;
+        }
+        .charity-footer .footer-impact {
+            gap: 0;
+            margin: 0;
+        }
+        .charity-footer .impact-stat-value {
+            font-size: 0.35rem;
+        }
+        .charity-footer .impact-stat-label {
+            font-size: 0.3rem;
+        }
+        .charity-footer .footer-disclaimer {
+            font-size: 0.3rem;
+            margin-top: 0;
+        }
+        .charity-footer .footer-logo svg {
+            width: 7px;
+            height: 8px;
+        }
+        </style>
+        <style>
+        /* Ultra-Compact Charity: Water Footer */
+        .charity-footer {
+            padding: 0.1rem 0.2rem;
+            font-size: 0.55rem;
+        }
+        .charity-footer .footer-content {
+            gap: 0.1rem;
+            padding: 0.1rem 0;
+        }
+        .charity-footer .footer-brand h3 {
+            font-size: 0.6rem;
+            margin-bottom: 0.04rem;
+        }
+        .charity-footer .footer-brand p {
+            font-size: 0.5rem;
+            margin-bottom: 0.02rem;
+        }
+        .charity-footer .footer-mission {
+            font-size: 0.5rem;
+            margin-bottom: 0.05rem;
+        }
+        .charity-footer .footer-actions {
+            gap: 0.1rem;
+        }
+        .charity-footer .footer-btn {
+            font-size: 0.55rem;
+            padding: 0.08rem 0.2rem;
+        }
+        .charity-footer .footer-impact {
+            gap: 0.1rem;
+            margin: 0.05rem 0;
+        }
+        .charity-footer .impact-stat-value {
+            font-size: 0.5rem;
+        }
+        .charity-footer .impact-stat-label {
+            font-size: 0.4rem;
+        }
+        .charity-footer .footer-disclaimer {
+            font-size: 0.4rem;
+            margin-top: 0.05rem;
+        }
+        .charity-footer .footer-logo svg {
+            width: 12px;
+            height: 14px;
+        }
+        </style>
+        <style>
+        /* Even Smaller Charity: Water Footer */
+        .charity-footer {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.7rem;
+        }
+        .charity-footer .footer-content {
+            gap: 0.25rem;
+            padding: 0.25rem 0;
+        }
+        .charity-footer .footer-brand h3 {
+            font-size: 0.8rem;
+            margin-bottom: 0.08rem;
+        }
+        .charity-footer .footer-brand p {
+            font-size: 0.65rem;
+            margin-bottom: 0.05rem;
+        }
+        .charity-footer .footer-mission {
+            font-size: 0.65rem;
+            margin-bottom: 0.1rem;
+        }
+        .charity-footer .footer-actions {
+            gap: 0.25rem;
+        }
+        .charity-footer .footer-btn {
+            font-size: 0.7rem;
+            padding: 0.15rem 0.4rem;
+        }
+        .charity-footer .footer-impact {
+            gap: 0.25rem;
+            margin: 0.1rem 0;
+        }
+        .charity-footer .impact-stat-value {
+            font-size: 0.7rem;
+        }
+        .charity-footer .impact-stat-label {
+            font-size: 0.55rem;
+        }
+        .charity-footer .footer-disclaimer {
+            font-size: 0.55rem;
+            margin-top: 0.1rem;
+        }
+        .charity-footer .footer-logo svg {
+            width: 22px;
+            height: 26px;
+        }
+        </style>
+        <style>
+        /* Smaller Charity: Water Footer */
+        .charity-footer {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.85rem;
+        }
+        .charity-footer .footer-content {
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+        }
+        .charity-footer .footer-brand h3 {
+            font-size: 1rem;
+            margin-bottom: 0.15rem;
+        }
+        .charity-footer .footer-brand p {
+            font-size: 0.8rem;
+            margin-bottom: 0.1rem;
+        }
+        .charity-footer .footer-mission {
+            font-size: 0.8rem;
+            margin-bottom: 0.2rem;
+        }
+        .charity-footer .footer-actions {
+            gap: 0.5rem;
+        }
+        .charity-footer .footer-btn {
+            font-size: 0.85rem;
+            padding: 0.3rem 0.7rem;
+        }
+        .charity-footer .footer-impact {
+            gap: 0.5rem;
+            margin: 0.2rem 0;
+        }
+        .charity-footer .impact-stat-value {
+            font-size: 1rem;
+        }
+        .charity-footer .impact-stat-label {
+            font-size: 0.7rem;
+        }
+        .charity-footer .footer-disclaimer {
+            font-size: 0.7rem;
+            margin-top: 0.2rem;
+        }
+        .charity-footer .footer-logo svg {
+            width: 32px;
+            height: 38px;
+        }
+        </style>
+        <style>
+        /* Mission Protip Paragraph Refactor */
+        .mission-protip {
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            color: var(--cyan-bright);
+            font-style: italic;
+        }
+        </style>
+        <style>
+        /* Game Over Overlay Score Section Refactor */
+        .gameover-difficulty {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .score-section {
+            margin-top: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+        .score-best-run {
+            margin-top: 0.25rem;
+            margin-bottom: 0.25rem;
+        }
+        .score-water-delivered {
+            margin-top: 0.75rem;
+        }
+        </style>
 </head>
 <body>
     <audio id="errorSound" src="assets/error.wav" preload="auto"></audio>
+    <audio id="hitSound" src="assets/hit.wav" preload="auto"></audio>
     <!-- Sound Effects -->
     <audio id="powerupSound" src="assets/powerup.wav" preload="auto"></audio>
-    <audio id="missionCompleteSound" src="assets/mission-complete.wav" preload="auto"></audio>
-    <audio id="tronTheme" src="assets/tron-theme.mpg" preload="auto" loop></audio>
+    <audio id="missionCompleteSound" src="assets/mission-complete.mp3" preload="auto"></audio>
+    <!-- Background Music -->
+    <audio id="backgroundMusic" src="assets/tron-world.wav" preload="auto" loop></audio>
+    <!-- Mission Complete Overlay -->
+    <div id="missionCompleteOverlay" class="mission-complete-overlay" style="display:none;">
+        <div class="mission-complete-bg-particles"></div>
+        <div class="mission-complete-popup spectacular-glow">
+            <div class="mission-complete-confetti"></div>
+            <div class="mission-complete-sparkles"></div>
+            <div class="mission-complete-rays"></div>
+            <div class="mission-complete-stars"></div>
+            <div class="mission-complete-title burst">🌊 MISSION COMPLETE! 🌊</div>
+            <div class="mission-complete-subtitle">You are a HERO!</div>
+            <div class="mission-complete-desc">Spectacular! You delivered clean water and completed your mission!</div>
+            <div class="mission-complete-stats">
+                <div class="stat-item">💧 Water Delivered</div>
+                <div class="stat-item">🏃 Distance Covered</div>
+                <div class="stat-item">⚡ Power Collected</div>
+            </div>
+            <div class="mission-complete-actions">
+                <button id="missionCompleteRetry" class="mission-complete-btn btn-retry">🔄 Retry</button>
+                <button id="missionCompleteMenu" class="mission-complete-btn btn-menu">🏠 Main Menu</button>
+            </div>
+        </div>
+    </div>
+    <style>
+    .mission-complete-overlay {
+        position: fixed;
+        left: 0; top: 0; width: 100vw; height: 100vh;
+        background: radial-gradient(circle at 50% 40%, #FFD700 0%, #1a1a1a 70%, #000 100%);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: fadeInOverlay 0.6s ease-out;
+        overflow: hidden;
+    }
+    @keyframes fadeInOverlay {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    .mission-complete-bg-particles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+    }
+    .mission-complete-popup {
+        background: linear-gradient(135deg, rgba(34,34,34,0.99) 0%, rgba(50,50,50,0.98) 100%);
+        border-radius: 2.5rem;
+        box-shadow: 0 8px 48px #FFD70099, inset 0 1px 0 rgba(255,255,255,0.1);
+        padding: 3rem 2.5rem 2.5rem 2.5rem;
+        text-align: center;
+        position: relative;
+        min-width: 340px;
+        max-width: 90vw;
+        animation: popInSpectacular 0.8s cubic-bezier(.68,-0.55,.27,1.55);
+        border: 4px solid #FFD700;
+        z-index: 10;
+    }
+    .spectacular-glow {
+        box-shadow: 0 0 40px 12px #FFD700dd, 0 8px 48px #FFD70099, inset 0 1px 0 rgba(255,255,255,0.2);
+        animation: glowPulseSpectacular 1.5s infinite alternate;
+    }
+    @keyframes glowPulseSpectacular {
+        0% { box-shadow: 0 0 40px 12px #FFD700dd, 0 8px 48px #FFD70099, inset 0 1px 0 rgba(255,255,255,0.2); }
+        50% { box-shadow: 0 0 60px 20px #FFD700ff, 0 12px 64px #FFD700cc, inset 0 1px 0 rgba(255,255,255,0.3); }
+        100% { box-shadow: 0 0 80px 24px #FFD700ee, 0 8px 48px #FFD70099, inset 0 1px 0 rgba(255,255,255,0.2); }
+    }
+    .mission-complete-title.burst {
+        position: relative;
+        z-index: 2;
+        animation: burstTitleSpectacular 0.8s cubic-bezier(.34,1.56,.64,1);
+    }
+    @keyframes burstTitleSpectacular {
+        0% { transform: scale(0) rotateZ(-10deg); opacity: 0; }
+        50% { transform: scale(1.15) rotateZ(2deg); }
+        100% { transform: scale(1) rotateZ(0deg); opacity: 1; }
+    }
+    .mission-complete-subtitle {
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: #00d9ff;
+        margin-top: -0.5rem;
+        margin-bottom: 0.8rem;
+        text-shadow: 0 2px 12px #00d9ff66, 0 0 4px #fff;
+        animation: slideInSubtitle 0.8s ease-out 0.2s both;
+        letter-spacing: 0.08em;
+    }
+    @keyframes slideInSubtitle {
+        from { transform: translateY(-30px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+    .mission-complete-sparkles {
+        position: absolute;
+        left: 0; top: 0; width: 100%; height: 100%; pointer-events: none;
+        z-index: 1;
+    }
+    .mission-complete-rays {
+        position: absolute;
+        left: 50%; top: 50%; width: 100%; height: 100%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 0;
+    }
+    .mission-complete-stars {
+        position: absolute;
+        left: 0; top: 0; width: 100%; height: 100%;
+        pointer-events: none;
+        z-index: 1;
+    }
+    @keyframes popInSpectacular {
+        0% { transform: scale(0) rotateZ(-5deg); opacity: 0; }
+        70% { transform: scale(1.08) rotateZ(1deg); opacity: 1; }
+        100% { transform: scale(1) rotateZ(0deg); opacity: 1; }
+    }
+    .mission-complete-title {
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-size: 3.2rem;
+        font-weight: 900;
+        color: #FFD700;
+        margin-bottom: 0.3rem;
+        letter-spacing: 0.06em;
+        text-shadow: 0 2px 20px #FFD70099, 0 0 8px #fff, 0 4px 12px #FFD700;
+        animation: pulseTitle 1.2s infinite alternate;
+    }
+    @keyframes pulseTitle {
+        0% { text-shadow: 0 2px 20px #FFD70099, 0 0 8px #fff, 0 4px 12px #FFD700; }
+        100% { text-shadow: 0 4px 32px #FFD700dd, 0 0 16px #fff, 0 6px 20px #FFD700; }
+    }
+    .mission-complete-desc {
+        color: #00d9ff;
+        font-size: 1.2rem;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-weight: 500;
+        text-shadow: 0 1px 12px #00d9ff66;
+        animation: slideIn 0.8s ease-out 0.3s both;
+        letter-spacing: 0.02em;
+    }
+    @keyframes slideIn {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+    .mission-complete-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin: 1.5rem 0;
+        padding: 1rem;
+        background: rgba(0, 217, 255, 0.05);
+        border-radius: 1rem;
+        border: 1px solid rgba(0, 217, 255, 0.2);
+    }
+    .stat-item {
+        font-size: 0.95rem;
+        color: #00d9ff;
+        font-weight: 600;
+        padding: 0.5rem;
+        animation: slideIn 0.8s ease-out both;
+    }
+    .stat-item:nth-child(2) { animation-delay: 0.4s; }
+    .stat-item:nth-child(3) { animation-delay: 0.5s; }
+    .mission-complete-actions {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        margin-top: 2rem;
+        animation: slideIn 0.8s ease-out 0.5s both;
+    }
+    .mission-complete-btn {
+        background: linear-gradient(135deg, #FFD700 0%, #FFC107 100%);
+        color: #222;
+        font-size: 1.15rem;
+        font-weight: 700;
+        border: 2px solid #fff;
+        border-radius: 1.2rem;
+        padding: 0.95rem 2rem;
+        cursor: pointer;
+        box-shadow: 0 4px 16px #FFD70055, inset 0 1px 0 rgba(255,255,255,0.4);
+        transition: all 0.3s cubic-bezier(.34,1.56,.64,1);
+        position: relative;
+        overflow: hidden;
+    }
+    .mission-complete-btn::before {
+        content: '';
+        position: absolute;
+        top: 0; left: -100%;
+        width: 100%; height: 100%;
+        background: rgba(255,255,255,0.3);
+        transition: left 0.3s ease;
+    }
+    .mission-complete-btn:hover {
+        background: linear-gradient(135deg, #fff 0%, #FFD700 100%);
+        color: #FFD700;
+        transform: scale(1.12) translateY(-3px);
+        box-shadow: 0 6px 24px #FFD70077, inset 0 1px 0 rgba(255,255,255,0.6);
+    }
+    .mission-complete-btn:hover::before {
+        left: 100%;
+    }
+    .mission-complete-confetti {
+        position: absolute;
+        left: 0; top: 0; width: 100%; height: 100%; pointer-events: none;
+        z-index: 0;
+    }
+    </style>
+    <!-- Removed missing tron-theme.mpg audio file -->
     <div class="bg-animated"></div>
     
     <div class="main-layout">
-    <div class="game-wrapper flex-1">
+        <div class="game-wrapper flex-1">
         <!-- Header -->
         <header class="header">
             <div class="header-content">
@@ -1601,7 +2343,7 @@
                     </div>
                 </div>
                     <div class="runner-img-container">
-                        <img src="assets/runner.png" alt="Runner" class="runner-img">
+                        <img src="assets/runner.png" alt="Runner" class="runner-img" id="runnerImg">
                     </div>
                 <div class="controls">
                     <button class="btn btn-primary" id="howToPlayBtn" title="How to Play">
@@ -1620,6 +2362,20 @@
                 </div>
             </div>
         </header>
+
+        <script>
+        // Runner image interactive rotation
+        const runnerImg = document.getElementById('runnerImg');
+        if (runnerImg) {
+            runnerImg.style.transition = 'transform 0.5s cubic-bezier(0.34,1.56,0.64,1)';
+            runnerImg.addEventListener('click', () => {
+                runnerImg.style.transform = 'rotate(360deg) scale(1.1)';
+                setTimeout(() => {
+                    runnerImg.style.transform = '';
+                }, 500);
+            });
+        }
+        </script>
 
         <!-- Game Container -->
         <div class="game-container">
@@ -1712,7 +2468,7 @@
                                 <span class="highlight">SURVIVE:</span> Use power-ups wisely<br>
                                 <span class="highlight">DELIVER:</span> Every meter = 1 drop
                             </p>
-                            <p style="margin-top: 1rem;">
+                            <p class="mission-controls">
                                 <strong>Controls:</strong><br>
                                 <kbd>SPACE</kbd> or <kbd>↑</kbd> to jump<br>
                                 <kbd>CLICK</kbd> drops for instant collection (+bonus!)<br>
@@ -1720,8 +2476,8 @@
                                 <kbd>CLICK</kbd> obstacles to destroy (3 charges)<br>
                                 <kbd>ESC</kbd> to pause
                             </p>
-                            <p style="margin-top: 1rem; color: var(--orange-bright);">
-                                <strong>💡 Pro Tip:</strong> Hover over objects to see what they do!
+                            <p class="mission-protip">
+                                                            <strong>💡 Pro Tip:</strong> Hover over objects to see what they do!
                             </p>
                         </div>
                     </div>
@@ -1733,19 +2489,19 @@
                         <h2 class="overlay-title-failed">MISSION FAILED</h2>
                         <p class="mission-text">🔻 Water supply depleted</p>
                         
-                        <div class="current-difficulty" id="gameOverDifficulty">
-                            Difficulty: RUNNER
-                        </div>
+                                                <div class="current-difficulty gameover-difficulty" id="gameOverDifficulty">
+                                                    Difficulty: RUNNER
+                                                </div>
 
-                        <div class="mt-2 mb-2">
-                            <div class="score-large" id="finalScore">0</div>
-                            <p class="text-cyan-bright">
-                                Best Run: <strong id="finalHighScore" class="text-cyan-glow">0</strong> drops
-                            </p>
-                            <p class="text-cyan-bright mt-1">
-                                Water Delivered: <strong id="finalDrops" class="text-cyan-glow">0</strong> 💧
-                            </p>
-                        </div>
+                                                <div class="score-section">
+                                                    <div class="score-large" id="finalScore">0</div>
+                                                    <p class="text-cyan-bright score-best-run">
+                                                        Best Run: <strong id="finalHighScore" class="text-cyan-glow">0</strong> drops
+                                                    </p>
+                                                    <p class="text-cyan-bright score-water-delivered">
+                                                        Water Delivered: <strong id="finalDrops" class="text-cyan-glow">0</strong> 💧
+                                                    </p>
+                                                </div>
                         
                         <div class="water-impact">
                             <div class="impact-label">Total Impact</div>
@@ -1817,16 +2573,25 @@
                             </div>
 
                             <!-- Click Mechanics -->
-                            <div style="background: rgba(255, 111, 0, 0.1); border: 2px solid rgba(255, 111, 0, 0.3); border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 1.5rem;">
-                                <h3 style="color: var(--orange-bright); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <div class="card-orange">
+                                <h3 class="card-title-orange">
                                     👆 <span>Click Mechanics</span>
                                 </h3>
-                                <div style="display: grid; gap: 0.75rem; color: var(--cyan-bright);">
-                                    <div><strong style="color: var(--cyan-glow);">💧 Water Drops:</strong> Click to collect instantly + <span style="color: var(--orange-bright);">bonus points!</span></div>
-                                    <div><strong style="color: var(--cyan-glow);">⚡ Power-ups:</strong> Click to activate immediately</div>
-                                    <div><strong style="color: var(--cyan-glow);">🚫 Obstacles:</strong> Click to destroy using Click Power (requires charges)</div>
-                                    <div style="margin-top: 0.5rem; padding: 0.75rem; background: rgba(0, 0, 0, 0.3); border-radius: 0.5rem;">
-                                        <strong style="color: var(--orange-bright);">🔋 Click Power System:</strong><br>
+                                <div class="card-grid-cyan">
+                                    <div>
+                                        <strong class="card-strong-cyan">💧 Water Drops:</strong>
+                                        Click to collect instantly + <span class="card-strong-orange">bonus points!</span>
+                                    </div>
+                                    <div>
+                                        <strong class="card-strong-cyan">⚡ Power-ups:</strong>
+                                        Click to activate immediately
+                                    </div>
+                                    <div>
+                                        <strong class="card-strong-cyan">🚫 Obstacles:</strong>
+                                        Click to destroy using Click Power (requires charges)
+                                    </div>
+                                    <div class="card-combo-box">
+                                        <strong class="card-strong-orange">🔋 Click Power System:</strong><br>
                                         • Start with 3 charges<br>
                                         • Each obstacle click uses 1 charge<br>
                                         • Recharge by collecting water drops<br>
@@ -1836,47 +2601,47 @@
                             </div>
 
                             <!-- Power-Ups -->
-                            <div style="background: rgba(0, 151, 167, 0.2); border: 2px solid var(--cyan-dark); border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 1.5rem;">
-                                <h3 style="color: var(--cyan-glow); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <div class="card-cyan">
+                                <h3 class="card-title-cyan">
                                     ⚡ <span>Power-Ups</span>
                                 </h3>
-                                <div style="display: grid; gap: 0.75rem; color: var(--cyan-bright);">
-                                    <div style="display: flex; align-items: start; gap: 0.75rem;">
-                                        <span style="font-size: 1.5rem;">🛡️</span>
+                                <div class="card-grid-cyan card-powerups-grid">
+                                    <div class="card-powerup-flex">
+                                        <span class="card-powerup-icon">🛡️</span>
                                         <div>
-                                            <strong style="color: var(--cyan-glow);">Shield:</strong> Protects you from one obstacle hit<br>
-                                            <small style="color: var(--cyan-medium);">Duration: 10 seconds</small>
+                                            <strong class="card-strong-cyan">Shield:</strong> Protects you from one obstacle hit<br>
+                                            <small class="card-small-cyan">Duration: 10 seconds</small>
                                         </div>
                                     </div>
-                                    <div style="display: flex; align-items: start; gap: 0.75rem;">
-                                        <span style="font-size: 1.5rem;">⚡</span>
+                                    <div class="card-powerup-flex">
+                                        <span class="card-powerup-icon">⚡</span>
                                         <div>
-                                            <strong style="color: var(--cyan-glow);">Speed Boost:</strong> Increases game speed for higher score multiplier<br>
-                                            <small style="color: var(--cyan-medium);">Duration: 8 seconds</small>
+                                            <strong class="card-strong-cyan">Speed Boost:</strong> Increases game speed for higher score multiplier<br>
+                                            <small class="card-small-cyan">Duration: 8 seconds</small>
                                         </div>
                                     </div>
-                                    <div style="display: flex; align-items: start; gap: 0.75rem;">
-                                        <span style="font-size: 1.5rem;">🧲</span>
+                                    <div class="card-powerup-flex">
+                                        <span class="card-powerup-icon">🧲</span>
                                         <div>
-                                            <strong style="color: var(--cyan-glow);">Magnet:</strong> Auto-collects nearby water drops<br>
-                                            <small style="color: var(--cyan-medium);">Duration: 12 seconds</small>
+                                            <strong class="card-strong-cyan">Magnet:</strong> Auto-collects nearby water drops<br>
+                                            <small class="card-small-cyan">Duration: 12 seconds</small>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Scoring -->
-                            <div style="background: rgba(255, 111, 0, 0.1); border: 2px solid rgba(255, 111, 0, 0.3); border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 1.5rem;">
-                                <h3 style="color: var(--orange-bright); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <div class="card-orange-light">
+                                <h3 class="card-title-orange">
                                     🏆 <span>Scoring System</span>
                                 </h3>
-                                <div style="display: grid; gap: 0.5rem; color: var(--cyan-bright);">
-                                    <div>• <strong style="color: var(--cyan-glow);">Water Drops:</strong> 10 points each (15 if clicked)</div>
-                                    <div>• <strong style="color: var(--cyan-glow);">Distance:</strong> 1 point per meter traveled</div>
-                                    <div>• <strong style="color: var(--cyan-glow);">Combos:</strong> Collect drops quickly for multipliers!</div>
-                                    <div>• <strong style="color: var(--cyan-glow);">Difficulty Bonus:</strong> Higher difficulty = more points</div>
-                                    <div style="margin-top: 0.75rem; padding: 0.75rem; background: rgba(0, 0, 0, 0.3); border-radius: 0.5rem;">
-                                        <strong style="color: var(--orange-bright);">💥 Combo System:</strong><br>
+                                <div class="card-grid-cyan card-scoring-grid">
+                                    <div>• <strong class="card-strong-cyan">Water Drops:</strong> 10 points each (15 if clicked)</div>
+                                    <div>• <strong class="card-strong-cyan">Distance:</strong> 1 point per meter traveled</div>
+                                    <div>• <strong class="card-strong-cyan">Combos:</strong> Collect drops quickly for multipliers!</div>
+                                    <div>• <strong class="card-strong-cyan">Difficulty Bonus:</strong> Higher difficulty = more points</div>
+                                    <div class="card-combo-box card-combo-box-orange">
+                                        <strong class="card-strong-orange">💥 Combo System:</strong><br>
                                         Collect multiple drops rapidly to activate combos<br>
                                         • 2x Combo → 3x Combo → 5x Combo<br>
                                         • Timer resets with each collection
@@ -1885,40 +2650,40 @@
                             </div>
 
                             <!-- Difficulty Modes -->
-                            <div style="background: rgba(0, 151, 167, 0.2); border: 2px solid var(--cyan-dark); border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 1.5rem;">
-                                <h3 style="color: var(--cyan-glow); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <div class="card-cyan card-difficulty-modes">
+                                <h3 class="card-title-cyan">
                                     ⚙️ <span>Difficulty Modes</span>
                                 </h3>
-                                <div style="display: grid; gap: 0.75rem; color: var(--cyan-bright);">
+                                <div class="card-grid-cyan card-difficulty-grid">
                                     <div>
-                                        <strong style="color: #22c55e;">🌱 SURVIVOR:</strong> Perfect for beginners<br>
-                                        <small style="color: var(--cyan-medium);">Slower speed, fewer obstacles, more power-ups</small>
+                                        <strong class="card-strong-green">🌱 SURVIVOR:</strong> Perfect for beginners<br>
+                                        <small class="card-small-cyan">Slower speed, fewer obstacles, more power-ups</small>
                                     </div>
                                     <div>
-                                        <strong style="color: var(--cyan-glow);">🏃 RUNNER:</strong> Balanced challenge<br>
-                                        <small style="color: var(--cyan-medium);">Standard difficulty for regular players</small>
+                                        <strong class="card-strong-cyan">🏃 RUNNER:</strong> Balanced challenge<br>
+                                        <small class="card-small-cyan">Standard difficulty for regular players</small>
                                     </div>
                                     <div>
-                                        <strong style="color: #ef4444;">⚡ LEGEND:</strong> Ultimate test<br>
-                                        <small style="color: var(--cyan-medium);">Maximum speed, more obstacles, fewer power-ups</small>
+                                        <strong class="card-strong-red">⚡ LEGEND:</strong> Ultimate test<br>
+                                        <small class="card-small-cyan">Maximum speed, more obstacles, fewer power-ups</small>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Pro Tips -->
-                            <div style="background: rgba(255, 111, 0, 0.1); border: 2px solid rgba(255, 111, 0, 0.3); border-radius: 0.75rem; padding: 1.5rem;">
-                                <h3 style="color: var(--orange-bright); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <div class="card-orange-light card-pro-tips">
+                                <h3 class="card-title-orange">
                                     💡 <span>Pro Tips</span>
                                 </h3>
-                                <div style="display: grid; gap: 0.5rem; color: var(--cyan-bright);">
+                                <div class="card-grid-cyan card-pro-tips-grid">
                                     <div>✓ Click drops for bonus points instead of just jumping through them</div>
                                     <div>✓ Save Click Power charges for emergency situations</div>
                                     <div>✓ Chain drop collections quickly to build combo multipliers</div>
                                     <div>✓ Use shields before attempting risky maneuvers</div>
                                     <div>✓ Magnet power-ups are great for maintaining combos</div>
                                     <div>✓ Every meter traveled = 1 drop of clean water delivered!</div>
-                                    <div style="margin-top: 0.75rem; color: var(--orange-bright);">
-                                        <strong>🎯 Goal:</strong> The longer you survive and more drops you collect, the more water you deliver to communities in need!
+                                    <div class="card-pro-tips-goal">
+                                        <strong class="card-strong-orange">🎯 Goal:</strong> The longer you survive and more drops you collect, the more water you deliver to communities in need!
                                     </div>
                                 </div>
                             </div>
@@ -1935,12 +2700,17 @@
             <aside class="sidebar">
                 <!-- Mission Stats Card -->
                 <div class="card">
-                    <h3>📊 MISSION DATA</h3>
+                    <h3 class="mission-data-header">
+                        <img src="assets/charity_water_logo.png" alt="Charity Water Logo" class="mission-data-logo"> 
+                        <span>📊 MISSION DATA</span>
+                    </h3>
                     <div class="current-difficulty" id="sidebarDifficulty" style="width: 100%; text-align: center; margin-bottom: 1rem;">
                         Mode: RUNNER
                     </div>
-                    <div class="progress-container">
-                        <div class="progress-header">
+                    </div>
+                    <div class="progress-container" style="max-height: 30vh; overflow-y: auto;">
+                        <div class="progress-container-scroll">
+                            <div class="progress-header">
                             <span style="color: var(--cyan-bright);">Current Run</span>
                             <strong id="currentScore" style="color: var(--cyan-glow);">0</strong>
                         </div>
@@ -1999,77 +2769,81 @@
                         <span style="font-size: 0.75rem; color: var(--cyan-bright);">Auto-collect</span>
                     </div>
                 </div>
+
+                <!-- Skins Card -->
+                <div class="card">
+                    <h3>🎨 UNLOCKED SKINS</h3>
+                    <div id="skinsList" style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;"></div>
+                </div>
             </aside>
         </div>
     </div>
 
     <!-- Charity: Water Footer -->
-    <footer class="charity-footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <div class="footer-logo">
-                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="footerDropGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" style="stop-color:#00d9ff;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#0097a7;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <path d="M 50 10 Q 70 40 70 70 Q 70 95 50 110 Q 30 95 30 70 Q 30 40 50 10 Z" 
-                              fill="url(#footerDropGradient)" 
-                              stroke="#00d9ff" 
-                              stroke-width="2"/>
-                        <ellipse cx="42" cy="35" rx="8" ry="12" fill="rgba(255, 255, 255, 0.6)"/>
-                    </svg>
-                </div>
-                <div class="footer-text">
-                    <h3>CHARITY: WATER</h3>
-                    <p>Bringing clean water to people in need</p>
-                </div>
+    <footer class="charitywater-footer">
+        <div class="charitywater-footer-content">
+            <img src="assets/charity_water_logo.png" alt="Charity: Water Logo" class="charitywater-footer-logo">
+            <div class="charitywater-footer-links">
+                <a href="https://www.charitywater.org/" target="_blank" rel="noopener noreferrer" class="charitywater-link">Visit charity: water</a>
+                <a href="https://www.charitywater.org/donate" target="_blank" rel="noopener noreferrer" class="charitywater-link charitywater-donate">Donate</a>
             </div>
-
-            <div class="footer-mission">
-                <strong>785 million people</strong> live without clean water. That's nearly 1 in 10 people worldwide.
-                Every game you play represents lives that can be changed with access to clean, safe drinking water.
-            </div>
-
-            <div class="footer-actions">
-                <a href="https://www.charitywater.org/" target="_blank" rel="noopener noreferrer" class="footer-btn footer-btn-secondary">
-                    <span>🌐</span>
-                    <span>Learn More</span>
-                </a>
-                <a href="https://www.charitywater.org/donate" target="_blank" rel="noopener noreferrer" class="footer-btn footer-btn-primary">
-                    <span>💧</span>
-                    <span>Donate Now</span>
-                </a>
-            </div>
-        </div>
-
-        <div class="footer-impact">
-            <div class="impact-stat" onclick="window.open('https://www.charitywater.org/donate', '_blank')">
-                <div class="impact-tooltip">Click to donate and provide clean water!</div>
-                <div class="impact-stat-value">$40</div>
-                <div class="impact-stat-label">Provides Clean Water</div>
-            </div>
-            <div class="impact-stat" onclick="window.open('https://www.charitywater.org/our-approach/', '_blank')">
-                <div class="impact-tooltip">100% of donations fund water projects - Learn how!</div>
-                <div class="impact-stat-value">100%</div>
-                <div class="impact-stat-label">Goes to Water Projects</div>
-            </div>
-            <div class="impact-stat" onclick="window.open('https://www.charitywater.org/impact', '_blank')">
-                <div class="impact-tooltip">See the global impact of charity: water</div>
-                <div class="impact-stat-value">17M+</div>
-                <div class="impact-stat-label">People Served</div>
-            </div>
-        </div>
-
-        <div class="footer-disclaimer">
-            This is a fan-made game inspired by charity: water's mission. 
-            Not officially affiliated with <a href="https://www.charitywater.org/" target="_blank" rel="noopener noreferrer">charity: water</a>.
-            <br>100% of public donations to charity: water fund water projects. 
-            Learn more at <a href="https://www.charitywater.org/our-approach/" target="_blank" rel="noopener noreferrer">charitywater.org/our-approach</a>.
         </div>
     </footer>
+    <style>
+    .charitywater-footer {
+        width: 100%;
+        background: #222;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem 0;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        z-index: 100;
+        box-shadow: 0 -2px 12px rgba(0,0,0,0.12);
+        font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .charitywater-footer-content {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    .charitywater-footer-logo {
+        height: 32px;
+        margin-right: 1rem;
+    }
+    .charitywater-footer-links {
+        display: flex;
+        gap: 1.25rem;
+    }
+    .charitywater-link {
+        color: #FFD700;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: color 0.2s;
+    }
+    .charitywater-link:hover {
+        color: #fff;
+        text-decoration: underline;
+    }
+    .charitywater-donate {
+        background: #FFD700;
+        color: #222;
+        padding: 0.25rem 1rem;
+        border-radius: 6px;
+        font-weight: 700;
+        margin-left: 0.5rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        transition: background 0.2s, color 0.2s;
+    }
+    .charitywater-donate:hover {
+        background: #fff;
+        color: #222;
+    }
+    </style>
     </div>
 
     <!-- Achievement Popup -->
@@ -2118,13 +2892,15 @@
                 color: '#ef4444'
             }
         };
-
         // ==================== Play Sound Effects ====================
         function playSound(id) {
             const audio = document.getElementById(id);
             if (audio) {
                 audio.currentTime = 0;
-                audio.play();
+                audio.play().catch(e => {
+                    // User interaction required or audio blocked
+                    console.debug('Audio play delayed:', id);
+                });
             }
         }
 
@@ -2291,6 +3067,12 @@
                 this.musicEnabled = true;
                 this.difficulty = 'normal';
                 this.achievements = [];
+                this.skins = [
+                    { id: 'default', name: 'Default', color: ['#00d9ff','#0097a7','#006064'], unlocked: true },
+                    { id: 'sunset', name: 'Sunset', color: ['#ff9800','#ff7043','#d84315'], unlocked: false },
+                    { id: 'gold', name: 'Golden', color: ['#FFD700','#FFC107','#FFB300'], unlocked: false }
+                ];
+                this.selectedSkin = 'default';
                 this.stats = {
                     gamesPlayed: 0,
                     totalDistance: 0,
@@ -2357,6 +3139,17 @@
                     
                     const achievements = localStorage.getItem('lastdrop_achievements');
                     if (achievements) this.achievements = JSON.parse(achievements);
+                    const skins = localStorage.getItem('lastdrop_skins');
+                    if (skins) {
+                        const parsed = JSON.parse(skins);
+                        // merge unlocked state
+                        this.skins.forEach(s => {
+                            const found = parsed.find(p => p.id === s.id);
+                            if (found) s.unlocked = found.unlocked;
+                        });
+                    }
+                    const sel = localStorage.getItem('lastdrop_selectedSkin');
+                    if (sel) this.selectedSkin = sel;
                 } catch (e) {
                     console.error('Load error:', e);
                 }
@@ -2371,6 +3164,10 @@
                     localStorage.setItem('lastdrop_difficulty', this.difficulty);
                     localStorage.setItem('lastdrop_stats', JSON.stringify(this.stats));
                     localStorage.setItem('lastdrop_achievements', JSON.stringify(this.achievements));
+                    localStorage.setItem('lastdrop_skins', JSON.stringify(this.skins.map(s => ({ id: s.id, unlocked: s.unlocked }))));
+                    localStorage.setItem('lastdrop_selectedSkin', this.selectedSkin);
+                    // Notify UI that skins state changed
+                    try { window.dispatchEvent(new CustomEvent('skinsUpdated')); } catch(e){}
                 } catch (e) {
                     console.error('Save error:', e);
                 }
@@ -2399,21 +3196,25 @@
                 if (!this.musicEnabled) return;
                 
                 try {
-                    // Stop any existing music
-                    this.stopBackgroundMusic();
-                    
-                    // Create new music player
-                    this.musicPlayer = new TronMusicPlayer();
-                    this.musicPlayer.play();
+                    const bgMusic = document.getElementById('backgroundMusic');
+                    if (bgMusic) {
+                        bgMusic.currentTime = 0;
+                        bgMusic.play().catch(e => console.log('Audio play failed:', e));
+                    }
                 } catch (e) {
                     console.error('Music error:', e);
                 }
             }
 
             stopBackgroundMusic() {
-                if (this.musicPlayer) {
-                    this.musicPlayer.stop();
-                    this.musicPlayer = null;
+                try {
+                    const bgMusic = document.getElementById('backgroundMusic');
+                    if (bgMusic) {
+                        bgMusic.pause();
+                        bgMusic.currentTime = 0;
+                    }
+                } catch (e) {
+                    console.error('Music stop error:', e);
                 }
             }
 
@@ -2475,6 +3276,15 @@
                         this.achievements.push(ach);
                         this.saveGame();
                         this.showAchievement(ach);
+                        // Simple progression: unlock a skin at certain achievements
+                        if (def.id === 'drops100') {
+                            const skin = this.skins.find(s=>s.id==='sunset');
+                            if (skin) skin.unlocked = true;
+                        }
+                        if (def.id === 'score500') {
+                            const skin = this.skins.find(s=>s.id==='gold');
+                            if (skin) skin.unlocked = true;
+                        }
                     }
                 });
             }
@@ -2576,7 +3386,7 @@
                 this.player = {
                     x: 100, y: 0, w: 45, h: 55,
                     vy: 0, jumping: false,
-                    shield: false, speedBoost: false, magnet: false
+                    shield: false, speedBoost: false, magnet: false, doublePoints: false
                 };
                 
                 // Objects
@@ -2587,8 +3397,14 @@
                 this.wastelandDebris = [];
                 
                 // Timers
-                this.powerupTimers = { shield: 0, speed: 0, magnet: 0 };
+                this.powerupTimers = { shield: 0, speed: 0, magnet: 0, double: 0 };
                 
+                // Difficulty-based win/lose conditions
+                const diff = this.getDifficultyMultipliers();
+                this.winScore = diff.name === 'RECRUIT' ? 100 : diff.name === 'RUNNER' ? 200 : 300;
+                this.timeLimit = diff.name === 'RECRUIT' ? 60 : diff.name === 'RUNNER' ? 45 : 30; // seconds
+                this.startTime = null;
+
                 this.resize();
                 
                 // Debounced resize for better performance
@@ -3016,32 +3832,17 @@
                         gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.08);
                         osc.stop(ctx.currentTime + 0.08);
                     } else if (type === 'powerup') {
-                        // Rising power-up fanfare
-                        osc.type = 'square';
-                        osc.frequency.value = 600;
-                        gain.gain.value = 0.1;
-                        osc.start();
-                        osc.frequency.exponentialRampToValueAtTime(1400, ctx.currentTime + 0.25);
-                        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
-                        osc.stop(ctx.currentTime + 0.25);
+                        // Play powerup sound from audio file
+                        playSound('powerupSound');
+                        return;
                     } else if (type === 'hit') {
-                        // Harsh collision sound
-                        osc.type = 'sawtooth';
-                        osc.frequency.value = 180;
-                        gain.gain.value = 0.15;
-                        osc.start();
-                        osc.frequency.exponentialRampToValueAtTime(60, ctx.currentTime + 0.15);
-                        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
-                        osc.stop(ctx.currentTime + 0.15);
+                        // Play hit sound from audio file when player is hit
+                        playSound('hitSound');
+                        return;
                     } else if (type === 'miss') {
-                        // Short descending miss sound
-                        osc.type = 'triangle';
-                        osc.frequency.value = 440;
-                        gain.gain.value = 0.06;
-                        osc.start();
-                        osc.frequency.exponentialRampToValueAtTime(220, ctx.currentTime + 0.1);
-                        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
-                        osc.stop(ctx.currentTime + 0.1);
+                        // Play error sound from audio file for missed drops
+                        playSound('errorSound');
+                        return;
                     } else if (type === 'combo') {
                         // Special combo sound
                         osc.type = 'sine';
@@ -3199,10 +4000,24 @@
             loop() {
                 if (this.manager.state !== 'playing') return;
 
+                if (!this.startTime) this.startTime = Date.now();
                 this.frameCount++;
                 this.update();
                 this.render();
-                
+
+                // Difficulty-based win/lose conditions
+                const elapsed = (Date.now() - this.startTime) / 1000;
+                if (this.manager.score >= this.winScore) {
+                    playSound('missionCompleteSound');
+                    this.manager.endGame(Math.floor(this.manager.score), this.dropsCollected, this.distance, this.jumps);
+                    return;
+                }
+                if (elapsed >= this.timeLimit) {
+                    playSound('errorSound');
+                    this.manager.endGame(Math.floor(this.manager.score), this.dropsCollected, this.distance, this.jumps);
+                    return;
+                }
+
                 this.frame = requestAnimationFrame(() => this.loop());
             }
 
@@ -3521,10 +4336,16 @@
                 }
                 
                 // Runner body
+                // Use selected skin colors if available
+                let skinColors = ['#00d9ff','#0097a7','#006064'];
+                try {
+                    const s = this.manager.skins.find(k => k.id === this.manager.selectedSkin);
+                    if (s) skinColors = s.color;
+                } catch (e) {}
                 const grad = this.ctx.createLinearGradient(this.player.x, this.player.y, this.player.x, this.player.y + this.player.h);
-                grad.addColorStop(0, '#00d9ff');
-                grad.addColorStop(0.5, '#0097a7');
-                grad.addColorStop(1, '#006064');
+                grad.addColorStop(0, skinColors[0]);
+                grad.addColorStop(0.5, skinColors[1]);
+                grad.addColorStop(1, skinColors[2]);
                 this.ctx.fillStyle = grad;
                 
                 // Helmet
@@ -3677,7 +4498,7 @@
                     this.ctx.lineTo(0, 0);
                     this.ctx.closePath();
                     this.ctx.fill();
-                } else {
+                } else if (p.type === 'magnet') {
                     this.ctx.fillStyle = '#00d9ff';
                     this.ctx.shadowColor = '#00d9ff';
                     this.ctx.shadowBlur = isHovered ? 25 : 15;
@@ -3688,6 +4509,22 @@
                     this.ctx.lineTo(-7, 10);
                     this.ctx.closePath();
                     this.ctx.fill();
+                } else if (p.type === 'double') {
+                    // Gold gem for double points
+                    this.ctx.fillStyle = '#FFD700';
+                    this.ctx.shadowColor = '#FFD700';
+                    this.ctx.shadowBlur = isHovered ? 30 : 18;
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(0, -12);
+                    this.ctx.lineTo(8, -2);
+                    this.ctx.lineTo(4, 12);
+                    this.ctx.lineTo(-4, 12);
+                    this.ctx.lineTo(-8, -2);
+                    this.ctx.closePath();
+                    this.ctx.fill();
+                    this.ctx.strokeStyle = '#fff3bf';
+                    this.ctx.lineWidth = 1;
+                    this.ctx.stroke();
                 }
                 
                 // Hover ring
@@ -3841,12 +4678,27 @@
             }
 
             spawnObstacle() {
-                this.obstacles.push({
-                    x: this.w + 50,
-                    y: this.ground - 35,
-                    w: 35,
-                    h: 35
-                });
+                // 20% chance to spawn a moving hazard
+                if (Math.random() < 0.2) {
+                    this.obstacles.push({
+                        type: 'moving',
+                        x: this.w + 50,
+                        y: this.ground - 100 - Math.random() * 60,
+                        w: 35,
+                        h: 35,
+                        vy: (Math.random() < 0.5 ? 1 : -1) * (1 + Math.random()),
+                        minY: this.ground - 160,
+                        maxY: this.ground - 35
+                    });
+                } else {
+                    this.obstacles.push({
+                        type: 'static',
+                        x: this.w + 50,
+                        y: this.ground - 35,
+                        w: 35,
+                        h: 35
+                    });
+                }
             }
 
             spawnDrop() {
@@ -3859,7 +4711,7 @@
             }
 
             spawnPowerup() {
-                const types = ['shield', 'speed', 'magnet'];
+                const types = ['shield', 'speed', 'magnet', 'double'];
                 const type = types[Math.floor(Math.random() * types.length)];
                 this.powerups.push({
                     type,
@@ -3902,7 +4754,13 @@
                 document.getElementById('soundToggle').onclick = () => this.manager.toggleSound();
                 document.getElementById('musicToggle').onclick = () => this.manager.toggleMusic();
                 document.getElementById('fullscreenToggle').onclick = () => this.fullscreen();
-                document.getElementById('startButton').onclick = () => this.start();
+                const startBtn = document.getElementById('startButton');
+                startBtn.onclick = () => {
+                    console.log('Begin Mission button clicked');
+                    this.start();
+                };
+                startBtn.disabled = false;
+                startBtn.style.display = '';
                 document.getElementById('playAgainButton').onclick = () => this.start();
                 document.getElementById('backToMenuButton').onclick = () => this.menu();
                 document.getElementById('resumeButton').onclick = () => this.resume();
@@ -3931,20 +4789,141 @@
                         });
                     }
                 });
-
                 // Achievement click animations
                 const achievementList = document.getElementById('achievementList');
                 if (achievementList) {
                     achievementList.addEventListener('click', (e) => {
                         const achievement = e.target.closest('.achievement');
-                        if (achievement) {
-                            achievement.style.transform = 'scale(1.05) translateX(8px)';
-                            setTimeout(() => {
-                                achievement.style.transform = '';
-                            }, 300);
-                        }
+                        // ...existing code...
                     });
                 }
+            }
+
+            // ...existing code...
+            showGameOver() {
+                this.hideAll();
+                // Show mission complete overlay
+                const missionComplete = document.getElementById('missionCompleteOverlay');
+                missionComplete.style.display = 'flex';
+                // Play mission complete sound
+                const audio = document.getElementById('missionCompleteSound');
+                if (audio) { 
+                    audio.currentTime = 0; 
+                    audio.play().catch(e => console.debug('Mission complete sound delayed'));
+                }
+                // Confetti animation
+                const confetti = missionComplete.querySelector('.mission-complete-confetti');
+                confetti.innerHTML = '';
+                for (let i = 0; i < 60; i++) {
+                    const piece = document.createElement('div');
+                    piece.style.position = 'absolute';
+                    piece.style.width = '12px';
+                    piece.style.height = '18px';
+                    piece.style.background = `hsl(${Math.random()*360},90%,60%)`;
+                    piece.style.left = Math.random()*100 + '%';
+                    piece.style.top = '-30px';
+                    piece.style.borderRadius = '3px';
+                    piece.style.opacity = 0.85;
+                    piece.style.transform = `rotate(${Math.random()*360}deg)`;
+                    piece.style.animation = `confettiDrop 1.2s ${Math.random()}s cubic-bezier(.68,-0.55,.27,1.55) forwards`;
+                    confetti.appendChild(piece);
+                }
+                // Sparkle animation - Enhanced
+                const sparkles = missionComplete.querySelector('.mission-complete-sparkles');
+                sparkles.innerHTML = '';
+                for (var i = 0; i < 32; i++) {
+                    var sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    var angle = (360 / 32) * i;
+                    var radius = 100 + Math.random() * 60;
+                    sparkle.style.position = 'absolute';
+                    sparkle.style.left = (50 + Math.cos(angle * Math.PI / 180) * radius / 2) + '%';
+                    sparkle.style.top = (50 + Math.sin(angle * Math.PI / 180) * radius / 2) + '%';
+                    sparkle.style.width = (10 + Math.random() * 8) + 'px';
+                    sparkle.style.height = sparkle.style.width;
+                    sparkle.style.background = ['#FFD700', '#00d9ff', '#fff'][Math.floor(Math.random() * 3)];
+                    sparkle.style.borderRadius = '50%';
+                    sparkle.style.boxShadow = '0 0 10px currentColor';
+                    sparkle.style.animation = `sparkleFloat 2s ${Math.random() * 2}s infinite ease-in-out`;
+                    sparkles.appendChild(sparkle);
+                }
+                
+                // Light rays animation
+                const rays = missionComplete.querySelector('.mission-complete-rays');
+                rays.innerHTML = '';
+                for (var i = 0; i < 12; i++) {
+                    var ray = document.createElement('div');
+                    ray.style.position = 'absolute';
+                    ray.style.width = '2px';
+                    ray.style.height = '80%';
+                    ray.style.left = '50%';
+                    ray.style.top = '50%';
+                    ray.style.background = `linear-gradient(to bottom, rgba(255,215,0,0.8), rgba(255,215,0,0))`;
+                    ray.style.transform = `translate(-50%, -50%) rotate(${(360/12)*i}deg)`;
+                    ray.style.transformOrigin = 'center center';
+                    ray.style.animation = `spin 8s linear infinite`;
+                    ray.style.opacity = 0.6;
+                    rays.appendChild(ray);
+                }
+                
+                // Star burst animation
+                const stars = missionComplete.querySelector('.mission-complete-stars');
+                stars.innerHTML = '';
+                for (var i = 0; i < 20; i++) {
+                    var star = document.createElement('div');
+                    star.style.position = 'absolute';
+                    star.style.left = '50%';
+                    star.style.top = '50%';
+                    star.style.width = '4px';
+                    star.style.height = '4px';
+                    star.style.background = '#FFD700';
+                    star.style.borderRadius = '50%';
+                    star.style.boxShadow = '0 0 6px #FFD700';
+                    var angle = (Math.random() * 360);
+                    var speed = 3 + Math.random() * 3;
+                    star.style.animation = `starBurst ${speed}s ease-out forwards`;
+                    star.style.transform = `rotate(${angle}deg) translateX(200px)`;
+                    star.style.transformOrigin = '0 0';
+                    stars.appendChild(star);
+                }
+                
+                // Add animation keyframes to document
+                if (!document.querySelector('style[data-mission-complete]')) {
+                    const style = document.createElement('style');
+                    style.setAttribute('data-mission-complete', 'true');
+                    style.textContent = `
+                        @keyframes sparkleFloat {
+                            0%, 100% { transform: translateY(0) scale(1); opacity: 1; }
+                            50% { transform: translateY(-15px) scale(1.2); opacity: 0.8; }
+                        }
+                        @keyframes spin {
+                            from { transform: translate(-50%, -50%) rotate(0deg); }
+                            to { transform: translate(-50%, -50%) rotate(360deg); }
+                        }
+                        @keyframes starBurst {
+                            0% { opacity: 1; transform: rotate(0deg) translateX(0); }
+                            100% { opacity: 0; transform: rotate(360deg) translateX(200px); }
+                        }
+                        @keyframes confettiDrop {
+                            0% { transform: translateY(-30px) rotateZ(0deg); opacity: 1; }
+                            100% { transform: translateY(100vh) rotateZ(720deg); opacity: 0; }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+                // Retry and Menu buttons
+                const retryBtn = document.getElementById('missionCompleteRetry');
+                const menuBtn = document.getElementById('missionCompleteMenu');
+                retryBtn.onclick = () => {
+                    missionComplete.style.display = 'none';
+                    this.manager.startGame();
+                    engine.start();
+                };
+                menuBtn.onclick = () => {
+                    missionComplete.style.display = 'none';
+                    this.menu();
+                };
+                this.update();
             }
 
             showStatMessage(message, color, element) {
@@ -3986,16 +4965,49 @@
 
             showGameOver() {
                 this.hideAll();
-                document.getElementById('finalScore').textContent = Math.floor(this.manager.score);
-                document.getElementById('finalHighScore').textContent = this.manager.highScore;
-                document.getElementById('finalDrops').textContent = engine.dropsCollected;
-                
-                const liters = Math.floor(this.manager.stats.totalDistance);
-                document.getElementById('totalImpact').textContent = liters + ' Liters';
-                
-                document.getElementById('gameOverOverlay').classList.add('active');
+                // Show mission complete overlay
+                const missionComplete = document.getElementById('missionCompleteOverlay');
+                missionComplete.style.display = 'flex';
+                // Play mission complete sound
+                const audio = document.getElementById('missionCompleteSound');
+                if (audio) { 
+                    audio.currentTime = 0; 
+                    audio.play().catch(e => console.debug('Mission complete sound delayed'));
+                }
+                // Confetti animation
+                const confetti = missionComplete.querySelector('.mission-complete-confetti');
+                confetti.innerHTML = '';
+                for (let i = 0; i < 60; i++) {
+                    const piece = document.createElement('div');
+                    piece.style.position = 'absolute';
+                    piece.style.width = '12px';
+                    piece.style.height = '18px';
+                    piece.style.background = `hsl(${Math.random()*360},90%,60%)`;
+                    piece.style.left = Math.random()*100 + '%';
+                    piece.style.top = '-30px';
+                    piece.style.borderRadius = '3px';
+                    piece.style.opacity = 0.85;
+                    piece.style.transform = `rotate(${Math.random()*360}deg)`;
+                    piece.style.animation = `confettiDrop 1.2s ${Math.random()}s cubic-bezier(.68,-0.55,.27,1.55) forwards`;
+                    confetti.appendChild(piece);
+                }
+                // Retry and Menu buttons
+                const retryBtn = document.getElementById('missionCompleteRetry');
+                const menuBtn = document.getElementById('missionCompleteMenu');
+                retryBtn.onclick = () => {
+                    missionComplete.style.display = 'none';
+                    this.manager.startGame();
+                    engine.start();
+                };
+                menuBtn.onclick = () => {
+                    missionComplete.style.display = 'none';
+                    this.menu();
+                };
                 this.update();
+
             }
+
+
 
             showPause() {
                 document.getElementById('pauseOverlay').classList.add('active');
@@ -4055,99 +5067,103 @@
                 this.manager.resumeGame();
                 engine.loop();
             }
-        }
+// ==================== End UIController class ====================
+}
 
-        // ==================== Initialize ====================
-    const manager = new GameManager();
+// ==================== Initialize ====================
+let manager, engine, ui;
+document.addEventListener('DOMContentLoaded', function() {
+    manager = new GameManager();
     const canvas = document.getElementById('gameCanvas');
-    const engine = new GameEngine(canvas, manager);
-    const ui = new UIController(manager);
-    document.getElementById('tronTheme').play();
+    engine = new GameEngine(canvas, manager);
+    ui = new UIController(manager);
+    
+    // Start menu background music
+    manager.startBackgroundMusic();
+    // Removed reference to missing tronTheme audio element
 
-        // Update loop
-        setInterval(() => {
-            if (manager.state === 'playing') {
-                ui.update();
+    // Update loop
+    setInterval(() => {
+        if (manager.state === 'playing') {
+            ui.update();
+        }
+    }, 100);
+
+    // Override endGame
+    const originalEnd = manager.endGame.bind(manager);
+    manager.endGame = function(score, drops, distance, jumps) {
+        originalEnd(score, drops, distance, jumps);
+        ui.showGameOver();
+    };
+
+    // Prevent space scroll
+    window.addEventListener('keydown', (e) => {
+        if (e.code === 'Space' && e.target === document.body) {
+            e.preventDefault();
+        }
+    });
+
+    // Footer interactions
+    document.querySelectorAll('.footer-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            // Track clicks (for analytics if needed)
+            const action = btn.textContent.includes('Donate') ? 'Donate' : 'Learn More';
+            console.log('Charity Water Click:', action);
+            // Create ripple effect
+            const ripple = document.createElement('div');
+            ripple.style.position = 'absolute';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+            ripple.style.width = ripple.style.height = '100px';
+            ripple.style.left = e.offsetX - 50 + 'px';
+            ripple.style.top = e.offsetY - 50 + 'px';
+            ripple.style.animation = 'ripple 600ms ease-out';
+            ripple.style.pointerEvents = 'none';
+            btn.style.position = 'relative';
+            btn.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+        });
+    });
+
+    // Add ripple animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes ripple {
+            0% {
+                transform: scale(0);
+                opacity: 1;
             }
-        }, 100);
-
-        // Override endGame
-        const originalEnd = manager.endGame.bind(manager);
-        manager.endGame = function(score, drops, distance, jumps) {
-            originalEnd(score, drops, distance, jumps);
-            ui.showGameOver();
-        };
-
-        // Prevent space scroll
-        window.addEventListener('keydown', (e) => {
-            if (e.code === 'Space' && e.target === document.body) {
-                e.preventDefault();
+            100% {
+                transform: scale(4);
+                opacity: 0;
             }
-        });
+        }
+    `;
+    document.head.appendChild(style);
 
-        // Footer interactions
-        document.querySelectorAll('.footer-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                // Track clicks (for analytics if needed)
-                const action = btn.textContent.includes('Donate') ? 'Donate' : 'Learn More';
-                console.log('Charity Water Click:', action);
-                
-                // Create ripple effect
-                const ripple = document.createElement('div');
-                ripple.style.position = 'absolute';
-                ripple.style.borderRadius = '50%';
-                ripple.style.background = 'rgba(255, 255, 255, 0.5)';
-                ripple.style.width = ripple.style.height = '100px';
-                ripple.style.left = e.offsetX - 50 + 'px';
-                ripple.style.top = e.offsetY - 50 + 'px';
-                ripple.style.animation = 'ripple 600ms ease-out';
-                ripple.style.pointerEvents = 'none';
-                
-                btn.style.position = 'relative';
-                btn.appendChild(ripple);
-                
-                setTimeout(() => ripple.remove(), 600);
-            });
-        });
+    // How to Play button listeners
+    document.getElementById('howToPlayBtn').addEventListener('click', () => {
+        ui.showHowToPlay();
+    });
 
-        // Add ripple animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple {
-                0% {
-                    transform: scale(0);
-                    opacity: 1;
-                }
-                100% {
-                    transform: scale(4);
-                    opacity: 0;
-                }
+    document.getElementById('closeHowToPlay').addEventListener('click', () => {
+        ui.hideHowToPlay();
+    });
+
+    document.getElementById('closeHowToPlayX').addEventListener('click', () => {
+        ui.hideHowToPlay();
+    });
+
+    // ESC key support for How to Play overlay
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const howToPlayOverlay = document.getElementById('howToPlayOverlay');
+            if (howToPlayOverlay.classList.contains('active')) {
+                ui.hideHowToPlay();
             }
-        `;
-        document.head.appendChild(style);
-
-        // How to Play button listeners
-        document.getElementById('howToPlayBtn').addEventListener('click', () => {
-            ui.showHowToPlay();
-        });
-
-        document.getElementById('closeHowToPlay').addEventListener('click', () => {
-            ui.hideHowToPlay();
-        });
-
-        document.getElementById('closeHowToPlayX').addEventListener('click', () => {
-            ui.hideHowToPlay();
-        });
-
-        // ESC key support for How to Play overlay
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                const howToPlayOverlay = document.getElementById('howToPlayOverlay');
-                if (howToPlayOverlay.classList.contains('active')) {
-                    ui.hideHowToPlay();
-                }
-            }
-        });
+        }
+    });
+});
     </script>
 </body>
 </html>

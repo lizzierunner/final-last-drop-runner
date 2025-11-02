@@ -3424,8 +3424,8 @@
                 
                 // Difficulty-based win/lose conditions
                 const diff = this.getDifficultyMultipliers();
-                this.winScore = diff.name === 'RECRUIT' ? 100 : diff.name === 'RUNNER' ? 200 : 300;
-                this.timeLimit = diff.name === 'RECRUIT' ? 60 : diff.name === 'RUNNER' ? 45 : 30; // seconds
+                this.winScore = diff.name === 'RECRUIT' ? 500 : diff.name === 'RUNNER' ? 800 : 1200;
+                this.timeLimit = diff.name === 'RECRUIT' ? 120 : diff.name === 'RUNNER' ? 90 : 60; // seconds
                 this.startTime = null;
 
                 this.resize();
